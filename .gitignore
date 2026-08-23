@@ -1,0 +1,43 @@
+# Python virtual environments
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Environment secrets
+.env
+.env.local
+.env.*.local
+
+# Local face recognition model & user memory (generated at runtime)
+face_model.yml
+face_labels.json
+chatbot_memory.json
+
+# YOLO downloaded weights (auto-downloads if needed)
+*.pt
+yolov8*.pt
+
+# IDE / Editor folders
+.vscode/
+.idea/
+.gemini/
+*.sublime-project
+*.sublime-workspace
+
+# Operating System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs & scratch files
+*.log
+scratch/

@@ -1,0 +1,22 @@
+# Core voice chatbot
+# Use google-genai (not the deprecated google-generativeai). The old SDK
+# treats new AI Studio AQ. keys as OAuth tokens and returns 401.
+google-genai>=1.0.0
+elevenlabs>=1.50.0
+SpeechRecognition>=3.10.0
+PyAudio>=0.2.14
+python-dotenv>=1.0.0
+
+# Vision (camera) features — optional; chatbot runs fine without them.
+# NOTE: use opencv-contrib-python, NOT plain opencv-python — face
+# recognition (cv2.face) only ships in the "contrib" build. If you
+# already have opencv-python installed, uninstall it first:
+#     pip uninstall opencv-python
+opencv-contrib-python>=4.9.0
+ultralytics>=8.2.0
+numpy>=1.24.0
+
+# Web Dashboard Frontend Server
+flask>=3.0.0
+flask-cors>=4.0.0
+Pillow>=10.0.0

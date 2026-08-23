@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="PIPPO – मेरा देसी दोस्त | AI Companion Robot" />
+  <title>PIPPO – मेरा देसी दोस्त</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Noto+Sans+Devanagari:wght@600;700;800&family=Cinzel+Decorative:wght@700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div id="app">
+
+    <div class="bg-layer bg-image"></div>
+    <div class="bg-layer bg-vignette"></div>
+    <div class="bg-layer bg-particles" id="particles"></div>
+
+    <header class="top-bar">
+      <div class="profile-card" id="profile-card" title="Open Profile">
+        <div class="profile-avatar-wrap">
+          <img src="images/pippo_profile.jpg" alt="Profile" class="profile-avatar" />
+        </div>
+        <div class="profile-info">
+          <span class="profile-name" id="user-name">Prakhar</span>
+          <span class="profile-title" id="user-title">Pippo's Dost</span>
+        </div>
+      </div>
+
+      <div class="title-block">
+        <h1 class="pippo-title">PIPPO</h1>
+        <p class="pippo-subtitle" lang="hi">मेरा देसी दोस्त</p>
+      </div>
+
+      <div class="top-right-group">
+        <button class="gear-btn" id="gear-btn" title="Settings" aria-label="Settings">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <main class="stage">
+
+      <section class="panel panel-left" aria-label="Emotions panel">
+        <div class="panel-header">
+          <span class="panel-gem">◆</span>
+          <h2 class="panel-title">EMOTIONS</h2>
+          <span class="panel-gem">◆</span>
+        </div>
+        <div class="radar-wrap">
+          <canvas id="emotions-radar" width="220" height="220" aria-label="Emotions radar chart"></canvas>
+        </div>
+        <div class="mood-badge" id="mood-badge">
+          <span class="mood-tag">MOOD</span>
+          <div class="mood-status-wrap">
+            <span class="mood-emoji" id="mood-emoji">😊</span>
+            <span class="mood-value" id="mood-value">HAPPY</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="center-stage" aria-label="Pippo Character">
+        <div class="pippo-platform-area">
+          <div class="diya diya-left">🪔</div>
+          <div class="pippo-robot-wrap">
+            <img
+              src="images/pippo_robot_exact.jpg"
+              alt="Pippo AI companion robot"
+              class="pippo-character"
+              id="pippo-character"
+            />
+          </div>
+          <div class="diya diya-right">🪔</div>
+        </div>
+
+        <div class="greeting-scroll" id="greeting-scroll">
+          <p class="greeting-heading">Namaste Dost! ✋</p>
+          <p class="greeting-sub" id="greeting-text">I am Pippo. What shall we do today?</p>
+        </div>
+      </section>
+
+      <section class="panel panel-right" aria-label="Personality panel">
+        <div class="panel-header">
+          <span class="panel-gem">◆</span>
+          <h2 class="panel-title">PERSONALITY</h2>
+          <span class="panel-gem">◆</span>
+        </div>
+        <div class="radar-wrap">
+          <canvas id="personality-radar" width="220" height="220" aria-label="Personality radar chart"></canvas>
+        </div>
+        <div class="mood-badge trait-badge" id="trait-badge">
+          <span class="mood-tag">TRAIT</span>
+          <div class="mood-status-wrap">
+            <span class="mood-emoji">😎</span>
+            <span class="mood-value" id="trait-value">ADVENTUROUS</span>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <nav class="features-nav" aria-label="Feature Navigation">
+
+      <button class="feature-card coming-soon" id="btn-mini-games" aria-label="Mini Games (Coming Soon)">
+        <div class="feature-arch">
+          <img src="images/card_minigames.jpg" alt="Mini Games" class="arch-img" />
+          <div class="coming-soon-ribbon">COMING SOON</div>
+        </div>
+        <div class="feature-banner">
+          <span>MINI GAMES</span>
+        </div>
+      </button>
+
+      <button class="feature-card" id="btn-remote" aria-label="Remote Control">
+        <div class="feature-arch">
+          <img src="images/card_remote.jpg" alt="Remote Control" class="arch-img" />
+        </div>
+        <div class="feature-banner">
+          <span>REMOTE CONTROL</span>
+        </div>
+      </button>
+
+      <button class="feature-card feature-center-card" id="btn-talk" aria-label="Talk to Pippo">
+        <div class="feature-arch">
+          <img src="images/card_talk.jpg" alt="Talk to Pippo" class="arch-img" />
+        </div>
+        <div class="feature-banner">
+          <span>TALK TO PIPPO</span>
+        </div>
+      </button>
+
+      <button class="feature-card" id="btn-camera" aria-label="Camera Vision">
+        <div class="feature-arch">
+          <img src="images/card_camera.jpg" alt="Camera" class="arch-img" />
+        </div>
+        <div class="feature-banner">
+          <span>CAMERA</span>
+        </div>
+      </button>
+
+      <button class="feature-card coming-soon" id="btn-skills" aria-label="Pippo's Skills (Coming Soon)">
+        <div class="feature-arch">
+          <img src="images/card_skills.jpg" alt="Pippo's Skills" class="arch-img" />
+          <div class="coming-soon-ribbon">COMING SOON</div>
+        </div>
+        <div class="feature-banner">
+          <span>PIPPO'S SKILLS</span>
+        </div>
+      </button>
+
+    </nav>
+
+  </div>
+
+  <div class="modal-backdrop" id="modal-remote" role="dialog" aria-modal="true" aria-label="Remote Control">
+    <div class="modal-box modal-remote-box">
+      <div class="modal-header">
+        <h2 class="modal-title">📡 Remote Control</h2>
+        <button class="modal-close" id="close-remote" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="control-status-bar">
+          <span class="control-status-dot" id="control-status-dot"></span>
+          <span id="control-status-text">Ready</span>
+        </div>
+
+        <div class="dpad-container" id="dpad-container">
+          <button class="dpad-btn dpad-up" id="ctrl-forward" aria-label="Forward" data-dir="forward">
+            <span class="arrow">▲</span>
+            <span class="dpad-label">FORWARD</span>
+          </button>
+          <button class="dpad-btn dpad-left" id="ctrl-left" aria-label="Left" data-dir="left">
+            <span class="arrow">◀</span>
+            <span class="dpad-label">LEFT</span>
+          </button>
+          <div class="dpad-center-piece">
+            <div class="dpad-center-icon">🤖</div>
+          </div>
+          <button class="dpad-btn dpad-right" id="ctrl-right" aria-label="Right" data-dir="right">
+            <span class="arrow">▶</span>
+            <span class="dpad-label">RIGHT</span>
+          </button>
+          <button class="dpad-btn dpad-down" id="ctrl-backward" aria-label="Backward" data-dir="backward">
+            <span class="arrow">▼</span>
+            <span class="dpad-label">BACK</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="modal-talk" role="dialog" aria-modal="true" aria-label="Talk to Pippo">
+    <div class="modal-box modal-talk-box">
+      <div class="modal-header">
+        <h2 class="modal-title">💬 Talk to Pippo</h2>
+        <button class="modal-close" id="close-talk" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="pippo-mini-char">
+          <img src="images/pippo_robot_exact.jpg" alt="Pippo" class="pippo-mini-img" id="pippo-talk-img" />
+          <div class="speech-pulse" id="speech-pulse"></div>
+        </div>
+
+        <div class="voice-status-card" id="voice-status-card">
+          <div class="vs-icon" id="vs-icon">🎙️</div>
+          <div class="vs-info">
+            <span class="vs-status" id="vs-status">Stopped</span>
+          </div>
+          <div class="vs-indicator" id="vs-indicator"></div>
+        </div>
+
+        <div class="voice-controls">
+          <button class="voice-btn start-btn" id="start-voice-btn">
+            <span>🚀</span> Start Voice
+          </button>
+          <button class="voice-btn stop-btn" id="stop-voice-btn" disabled>
+            <span>⏹</span> Stop
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="modal-camera" role="dialog" aria-modal="true" aria-label="Camera Vision">
+    <div class="modal-box modal-camera-box">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <h2 class="modal-title">📷 PIPPO AI Vision</h2>
+          <span class="modal-subtitle">YOLOv8 • Face ID • Live Stream</span>
+        </div>
+        <button class="modal-close" id="close-camera" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="camera-status-box" id="camera-status-box">
+          <div class="cam-status-left">
+            <div class="cam-led" id="cam-led"></div>
+            <span id="cam-status-text">Camera is Off</span>
+          </div>
+          <div class="cam-fps-pill" id="cam-fps-pill" style="display:none;">
+            <span class="fps-num" id="cam-fps-num">0</span> FPS
+          </div>
+        </div>
+
+        <div class="camera-feed-wrap" id="camera-feed-wrap">
+          <img id="camera-feed" class="camera-feed" src="" alt="PIPPO Live AI Feed" style="display:none;" />
+          
+          <div class="hud-overlay" id="hud-overlay" style="display:none;">
+            <div class="hud-corner hud-tl"></div>
+            <div class="hud-corner hud-tr"></div>
+            <div class="hud-corner hud-bl"></div>
+            <div class="hud-corner hud-br"></div>
+            <div class="hud-badge-live">● LIVE AI</div>
+            <div class="hud-crosshair">┼</div>
+            <div class="hud-scanline"></div>
+          </div>
+
+          <div class="camera-placeholder" id="camera-placeholder">
+            <div class="cam-icon-glow">
+              <span class="cam-placeholder-icon" id="cam-placeholder-icon">👁️</span>
+            </div>
+            <span class="cam-placeholder-text" id="cam-placeholder-title">Live Vision Stream</span>
+            <span class="cam-sub-text" id="cam-placeholder-sub">Click Start Vision to stream live object detection & face recognition right here inside the website</span>
+          </div>
+        </div>
+
+        <div class="camera-meta-panel" id="camera-meta-panel">
+          <div class="meta-row">
+            <span class="meta-label">🏷️ Objects:</span>
+            <div class="meta-chips-container" id="detected-objects-list">
+              <span class="meta-chip meta-empty">None detected</span>
+            </div>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">👤 Face ID:</span>
+            <div class="meta-chips-container" id="detected-faces-list">
+              <span class="meta-chip meta-empty">Searching…</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="camera-controls">
+          <button class="voice-btn start-btn" id="start-camera-btn">
+            <span>▶</span> Start Vision Stream
+          </button>
+          <button class="voice-btn stop-btn" id="stop-camera-btn" disabled>
+            <span>⏹</span> Stop Vision
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="modal-profile" role="dialog" aria-modal="true" aria-label="User Profile">
+    <div class="modal-box modal-profile-box">
+      <div class="modal-header">
+        <h2 class="modal-title">👤 Profile</h2>
+        <button class="modal-close" id="close-profile" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body profile-body">
+        <div class="profile-large-avatar">
+          <img src="images/pippo_profile.jpg" alt="Profile" />
+          <div class="profile-lvl-badge">
+            <span>⭐</span>
+            <span id="modal-level">7</span>
+          </div>
+        </div>
+        <div class="profile-details">
+          <h3 id="modal-name">Prakhar</h3>
+          <p id="modal-title-text">Pippo's Dost</p>
+        </div>
+        <div class="profile-stats">
+          <div class="pstat">
+            <div class="pstat-icon">🪙</div>
+            <div class="pstat-value" id="modal-coins">256</div>
+            <div class="pstat-label">Coins</div>
+          </div>
+          <div class="pstat">
+            <div class="pstat-icon">⭐</div>
+            <div class="pstat-value" id="modal-level2">7</div>
+            <div class="pstat-label">Level</div>
+          </div>
+        </div>
+        <div class="xp-bar-wrap">
+          <div class="xp-label">XP to Level 8</div>
+          <div class="xp-bar"><div class="xp-fill" style="width:64%"></div></div>
+          <div class="xp-numbers">640 / 1000 XP</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="modal-settings" role="dialog" aria-modal="true" aria-label="Settings">
+    <div class="modal-box modal-settings-box">
+      <div class="modal-header">
+        <h2 class="modal-title">⚙️ Settings</h2>
+        <button class="modal-close" id="close-settings" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="setting-item">
+          <label class="setting-label" for="set-username">Your Name</label>
+          <input class="setting-input" type="text" id="set-username" value="Prakhar" maxlength="20" />
+        </div>
+        <div class="setting-item">
+          <label class="setting-label" for="set-title">Title</label>
+          <input class="setting-input" type="text" id="set-title" value="Pippo's Dost" maxlength="30" />
+        </div>
+        <div class="setting-item">
+          <label class="setting-label">Pippo's Mood</label>
+          <div class="mood-selector" id="mood-selector">
+            <button class="mood-opt active" data-mood="HAPPY">😊 Happy</button>
+            <button class="mood-opt" data-mood="CURIOUS">🤔 Curious</button>
+            <button class="mood-opt" data-mood="EXCITED">🤩 Excited</button>
+            <button class="mood-opt" data-mood="SLEEPY">😴 Sleepy</button>
+            <button class="mood-opt" data-mood="SAD">😢 Sad</button>
+          </div>
+        </div>
+        <button class="save-settings-btn" id="save-settings-btn">💾 Save Settings</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
